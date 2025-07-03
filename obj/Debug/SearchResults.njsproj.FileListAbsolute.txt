@@ -1,0 +1,3 @@
+C:\Users\belys\Desktop\VB Projects\SearchResults\SearchResults\obj\Debug\SearchResults.njsproj.AssemblyReference.cache
+C:\Users\belys\Desktop\VB Projects\SearchResults\SearchResults\obj\Debug\SearchResults.njsproj.CoreCompileInputs.cache
+C:\Users\belys\Desktop\VB Projects\SearchResults\SearchResults\bin\Microsoft.NodejsTools.WebRole.dll

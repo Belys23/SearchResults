@@ -1,0 +1,17 @@
+{
+  "name": "search-results",
+  "version": "0.0.0",
+  "description": "SearchResults",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": {
+    "name": ""
+  },
+  "devDependencies": {
+    "eslint": "^8.21.0",
+    "jest": "^29.0.0",
+    "supertest": "^6.3.0"
+  }
+}

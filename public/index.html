@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8" />
+    <title>Google Search Výsledky</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background-color: #121212; 
+            color: #f44336; 
+        }
+
+        h1 {
+            text-align: center;
+            color: #f44336; 
+            margin-bottom: 30px;
+            text-shadow: 0 0 8px #f44336;
+        }
+
+        form {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        input[name="query"] {
+            flex-grow: 1;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: 2px solid #f44336;
+            border-radius: 5px 0 0 5px;
+            background-color: #1f1f1f;
+            color: #f9f9f9;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            input[name="query"]::placeholder {
+                color: #e57373;
+            }
+
+            input[name="query"]:focus {
+                border-color: #ff7961;
+                box-shadow: 0 0 8px #ff7961;
+            }
+
+        button {
+            padding: 10px 25px;
+            background-color: #f44336;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            button:hover {
+                background-color: #b71c1c;
+                box-shadow: 0 0 10px #b71c1c;
+            }
+
+        p {
+            text-align: center;
+            color: #e57373;
+            font-style: italic;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tarantula Web Scrapper</h1>
+    <form method="POST" action="/search">
+        <input name="query" placeholder="Zadej hledaný výraz" autocomplete="off" />
+        <button type="submit">Hledat</button>
+    </form>
+    <p title="description">Web searching tool for geeks and stoners made by Morava Hemp</p>
+</body>
+</html>
