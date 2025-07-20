@@ -1,130 +1,139 @@
-HEIMDALL - Client Search Software
+Search Results App (Google srapper app)
 Overview
-HEIMDALL is a C# console application developed by Martin Belka to automate client searches on the Kapitol portal (https://portal.kapitol.cz/). It uses Selenium WebDriver to scrape client data based on birth numbers or phone numbers provided in an input Excel file (Kontakty.xlsx). The program outputs results to an Excel file (pecovatel_vysledky.xlsx) on the user's desktop, indicating whether a client is associated with a specific Kapitol service (excluding GOLD and AUTO services).
+This is a Node.js web application built with Express.js that allows users to perform searches using the Google Custom Search API. Users can input a search query via a web form, view results displayed in a styled HTML page, and download the results as a JSON file. The application features a modern, dark-themed UI with responsive design and error handling for invalid inputs or API issues.
 Features
 
-Input Flexibility: Reads birth numbers or phone numbers from an Excel file (Kontakty.xlsx).
-Search Options: Allows users to choose between searching by birth number or phone number.
-Dynamic Row Selection: Users can specify the starting row and number of rows to process, with validation to prevent exceeding the input file's row count.
-Web Scraping: Automates login and client search on the Kapitol portal using Selenium WebDriver with Chrome.
-Result Filtering: Identifies clients associated with Kapitol services (excluding GOLD and AUTO) and marks them as "pozitivní" in the output.
-Excel Output: Saves results to pecovatel_vysledky.xlsx on the desktop, including the searched number and result status.
-Error Handling: Handles invalid inputs, disabled search buttons, and general exceptions with informative console messages.
+Search Functionality: Performs searches using the Google Custom Search API based on user-provided queries.
+Web Interface: Provides a user-friendly form for entering search queries, with results displayed in a clean, styled list.
+Download Results: Allows users to download search results as a JSON file (vysledky.json).
+Responsive Design: Dark-themed UI with hover effects, shadows, and smooth transitions for a modern look.
+Error Handling: Validates user input and handles API errors with appropriate status codes and messages.
+Static File Serving: Serves static assets (e.g., CSS, JavaScript) from a public directory.
 
 Prerequisites
 
-Operating System: Windows (due to ChromeDriver and Excel file handling).
+Node.js: Version 14.x or higher.
 Dependencies:
-.NET Framework or .NET Core (compatible with the project setup).
-EPPlus library for Excel file manipulation (non-commercial license).
-Selenium.WebDriver and Selenium.WebDriver.ChromeDriver for web scraping.
+express: For building the web server.
+axios: For making HTTP requests to the Google Custom Search API.
 
 
-Input File: An Excel file named Kontakty.xlsx in the same directory as the executable, with birth numbers in column 3 and phone numbers in column 1.
-Chrome Browser: Installed and compatible with the ChromeDriver version used.
-Kapitol Portal Credentials: Valid username and password for https://portal.kapitol.cz/.
+Google Custom Search API:
+A valid API key (API_KEY) from Google Cloud Console.
+A Custom Search Engine ID (CX) configured for your search engine.
+
+
+Internet Connection: Required for API requests.
 
 Installation
 
-Clone or Download the Project:
-Obtain the project files from the repository or source.
+Clone or Download the Repository:
+Clone the repository or download the project files.
+
+git clone <repository-url>
+cd <repository-directory>
 
 
 Install Dependencies:
-Use NuGet Package Manager to install:
-EPPlus (Install-Package EPPlus -Version 5.8.7 or compatible).
-Selenium.WebDriver (Install-Package Selenium.WebDriver).
-Selenium.WebDriver.ChromeDriver (Install-Package Selenium.WebDriver.ChromeDriver).
+Run the following command to install required Node.js packages:
+
+npm install express axios
 
 
+Set Up API Credentials:
+Replace the API_KEY and CX constants in the code with your Google Custom Search API key and Custom Search Engine ID:
+
+const API_KEY = 'your-api-key-here';
+const CX = 'your-cx-id-here';
 
 
-Prepare Input File:
-Place Kontakty.xlsx in the same directory as the executable, ensuring it has birth numbers in column 3 and phone numbers in column 1.
+Obtain these from the Google Cloud Console by enabling the Custom Search API and creating a search engine.
 
 
-Set Up Credentials:
-Replace "XXX" in the code (username and password fields) with valid Kapitol portal credentials.
+Create a Public Directory (if needed):
+Ensure a public directory exists in the project root for serving static files (e.g., CSS, images). This is optional if no additional static assets are used.
 
-
-Build the Project:
-Open the solution in Visual Studio.
-Build the solution to generate the executable.
-
-
-Ensure ChromeDriver:
-The ChromeDriver executable should match your installed Chrome version and be accessible in the project directory or PATH.
+mkdir public
 
 
 
 Usage
 
-Run the Program:
-Execute the compiled executable from the command line or Visual Studio.
+Run the Application:
+Start the server using:
+
+node index.js
 
 
-Select Search Type:
-Choose 1 for birth numbers or 2 for phone numbers when prompted.
+The server will run on port 3000 by default (or a port specified in the PORT environment variable).
 
 
-Specify Rows:
-Enter the starting row (1 to max rows in Kontakty.xlsx).
-Enter the number of rows to process (automatically adjusted if exceeding max rows).
+Access the Web Interface:
+Open a browser and navigate to http://localhost:3000/.
+You will see a search form with a text input and a "Hledat" (Search) button.
 
 
-Processing:
-The program logs into the Kapitol portal, navigates to the consultant page, and searches for each number.
-Results are displayed in the console, showing the number and associated client data (if any).
+Perform a Search:
+Enter a search query in the input field and click "Hledat".
+The results will display below the form, showing titles, links, and snippets for up to 10 results from the Google Custom Search API.
 
 
-Output:
-Results are saved to pecovatel_vysledky.xlsx on the desktop, with columns for the searched number and result ("pozitivní" for Kapitol clients, excluding GOLD and AUTO).
+Download Results:
+Click the "Stáhnout výsledky (JSON)" button to download the search results as a vysledky.json file.
 
 
-Completion:
-The program closes the browser and saves the output file. Press Enter to exit.
+Error Handling:
+If no query is provided, a 400 error with the message "Zadej hledaný výraz!" is returned.
+If the API request fails, a 500 error with the error message is displayed.
 
 
 
-Example Workflow
+Example
 
-Ensure Kontakty.xlsx is in the executable's directory.
-Run the program and select 1 for birth numbers.
-Enter starting row 1 and number of rows 10.
-The program processes 10 birth numbers, outputs results to the console, and saves them to pecovatel_vysledky.xlsx.
+Start the server:node index.js
 
-Notes
 
-Credentials: Hardcoded credentials (XXX) must be replaced with valid ones to avoid login failures.
-Excel File: Ensure Kontakty.xlsx is correctly formatted to avoid runtime errors.
-ChromeDriver: Update ChromeDriver if Chrome updates to maintain compatibility.
-Performance: A 150ms delay is included after each search to ensure page loading. Adjust if needed for stability.
-Error Handling: The program handles common errors (e.g., invalid inputs, disabled buttons) but may require manual intervention for network issues or portal changes.
+Open http://localhost:3000/ in your browser.
+Enter a query like "Node.js tutorial" and submit the form.
+View the results, including titles and snippets, and click the download button to save them as vysledky.json.
 
 Development
 
-Language: C#.
+Language: JavaScript (Node.js).
 Libraries:
-EPPlus for Excel file reading/writing.
-Selenium.WebDriver for browser automation.
+express: Handles routing and form submissions.
+axios: Makes API requests to Google Custom Search.
+path: Manages file paths for serving static files.
 
 
 Structure:
-Reads input from Kontakty.xlsx using EPPlus.
-Uses Selenium to automate Chrome browser interactions.
-Outputs results to a new Excel file using EPPlus.
+Single index.js file for the server logic.
+Inline CSS and JavaScript in the HTML response for simplicity.
+Static files served from the public directory (optional).
+
+
+API Details:
+Uses the Google Custom Search JSON API (https://www.googleapis.com/customsearch/v1).
+Returns up to 10 results per query (default API behavior).
 
 
 Limitations:
-Requires manual credential input in the code.
-Assumes a specific portal structure; updates to the Kapitol portal may break the scraper.
+Hardcoded API key and CX ID; consider using environment variables (e.g., .env file) for security.
+Limited to 100 free queries per day (Google API free tier); additional queries require a paid plan.
+Inline styles and scripts; could be refactored into separate files for better maintainability.
 
 
+
+Notes
+
+Security: Store API_KEY and CX in environment variables (e.g., using dotenv) to avoid exposing sensitive data in the codebase.
+API Quota: Be aware of Google Custom Search API limits (100 free queries/day). Monitor usage in the Google Cloud Console.
+Customization: Modify the CSS in the HTML response to adjust the UI's appearance or add more static assets in the public directory.
+Error Handling: The application handles empty queries and API errors but may need additional handling for network issues or API rate limits.
 
 Author
 
-Publisher: Morava Hemp
-Developed as a client search automation tool.
+Developed by Martin Belka.
 
 License
-This project uses a non-commercial license for EPPlus. Ensure compliance with EPPlus licensing terms. The project itself is not distributed under a specific license; contact the author for usage permissions.
+This project is for educational purposes and not distributed under a specific license. Ensure compliance with the Google Custom Search API terms of service. Contact the author for usage permissions.
