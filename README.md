@@ -1,6 +1,6 @@
 HEIMDALL - Client Search Software
 Overview
-HEIMDALL is a C# console application developed by Morava Hemp to automate client searches on the Kapitol portal (https://portal.kapitol.cz/). It uses Selenium WebDriver to scrape client data based on birth numbers or phone numbers provided in an input Excel file (Kontakty.xlsx). The program outputs results to an Excel file (pecovatel_vysledky.xlsx) on the user's desktop, indicating whether a client is associated with a specific Kapitol service (excluding GOLD and AUTO services).
+HEIMDALL is a C# console application developed by Martin Belka to automate client searches on the Kapitol portal (https://portal.kapitol.cz/). It uses Selenium WebDriver to scrape client data based on birth numbers or phone numbers provided in an input Excel file (Kontakty.xlsx). The program outputs results to an Excel file (pecovatel_vysledky.xlsx) on the user's desktop, indicating whether a client is associated with a specific Kapitol service (excluding GOLD and AUTO services).
 Features
 
 Input Flexibility: Reads birth numbers or phone numbers from an Excel file (Kontakty.xlsx).
